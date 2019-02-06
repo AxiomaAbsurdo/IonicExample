@@ -1,12 +1,64 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row size="12">
+        <ion-col>
+          <ion-title color="light" style="text-align: center">
+            FletesUY
+          </ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label style="text-align: center">
+            <h6>El flete mas facil que nunca</h6>
+          </ion-label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+<ion-label>Buscar Flete</ion-label>
+<ion-grid>
+  <ion-row>
+    <ion-col size="13">
+      <ion-searchbar></ion-searchbar>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+        <ion-card>
+            <ion-item>
+              <ion-icon name="pin" slot="start"></ion-icon>
+              <ion-label>Localidad</ion-label>
+              <ion-button fill="outline" slot="end">Ver</ion-button>
+            </ion-item>
+          
+            <ion-card-content>
+              Necesito flete para mudanza con una persona para descarga, desde zona centro hasta zona cordon.
+            </ion-card-content>
+          </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+          <ion-card>
+              <ion-item>
+                <ion-icon name="pin" slot="start"></ion-icon>
+                <ion-label>Localidad</ion-label>
+                <ion-button fill="outline" slot="end">Ver</ion-button>
+              </ion-item>
+            
+              <ion-card-content>
+                Flete para hoy en la tarde, desde Ciudad Vieja a Parque Batlle.
+                Solo si puede hacerlo luego de las 19:30 hs.
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+    </ion-row>
+</ion-grid>
 </ion-content>
