@@ -1,1 +1,92 @@
+#btn-salir-div{
+    text-align: right;
+    // position: fixed;
+    width: 95%;
+}
 
+
+#btn-salir{
+    // margin-right: 5%;
+    // margin-bottom: 5%;
+    color: #fff;
+    background: #f33f3f;
+    font-size: 1.2em;
+    padding: 0.7em 0.5em;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+#btn-salir:hover{
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  transition: all 250ms linear;
+}
+
+// #btn-add-div{
+//     text-align: right;
+//     // position: fixed;
+//     width: 100%;
+// }
+
+#btn-add{
+    // margin-right: 5%;
+    // margin-bottom: 5%;
+    color: #fff;
+    // background: #124f88;
+    font-size: 1.2em;
+    padding: 0.2em 0.5em;
+    font-weight: 500;
+    border-radius: 5px;
+    margin-bottom: 5%;
+}
+
+#btn-add:hover{
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  transition: all 250ms linear;
+}
+
+ion-segment{
+    height: 400px;
+}
+
+ion-input{
+    background-color: #f6f6f6;
+    color: #222222;
+    font-weight: bold;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0px 4px 7px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: inset 0px 4px 7px 0px rgba(0,0,0,0.3);
+    box-shadow: inset 0px 4px 7px 0px rgba(0,0,0,0.3);
+}
+
+.card-list{
+    width: 94%;
+    text-align: center;
+    // border-style: double;
+    height: 150px;
+}
+
+.card-list[scrollx=false], .card-list[scrolly=true] {
+    position: relative;
+    // overflow: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+  
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  .card-list[scrollx=true] {
+    overflow-x: auto;
+    overflow: hidden;
+  }
+  
+  .card-list[scrolly=true] {
+    overflow-y: auto;
+  }
+
+// .list{
+//     // background-color: #6992f3
+// }
