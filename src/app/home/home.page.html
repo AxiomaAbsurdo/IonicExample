@@ -6,25 +6,27 @@
 
 <ion-content>
   <div>
-    <ion-card>
+    <ion-card id="inputs-card">
       <ion-item>
         <ion-input type="text" placeholder=" He gastado en..."></ion-input>
       </ion-item>
-      <br>
       <ion-item>
         <ion-input type="number" placeholder=" $..."></ion-input>
       </ion-item>
       <!-- <ion-item> -->
       <!-- <div id="btn-add-div"> -->
-      <ion-button id="btn-add" expand="block" color="danger">
-        <ion-icon name="add-circle" slot="end"></ion-icon>
-      </ion-button>
+      <!-- <ion-button id="btn-add" expand="block" color="danger">
+                      <ion-icon name="add-circle" slot="end"></ion-icon>
+                    </ion-button> -->
       <!-- </div> -->
       <!-- </ion-item> -->
     </ion-card>
   </div>
-
-
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-card scrollY="true" class="card-list">
     <div id="list-scroll">
 
@@ -77,12 +79,28 @@
     </div>
   </ion-card>
 
+  <ion-card class="card-totals">
+    <div id="totals-containter">
+      <ion-item>
+        Total Gastos:
+      </ion-item>
+      <ion-item>
+        Disponible:
+      </ion-item>
+    </div>
+  </ion-card>
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <div id="btn-salir-div">
-      <button id="btn-salir" (click)="goToLoginState()">Salir</button>
+    <div id="footer-menu">
+      <div id="btn-stats-div">
+        <button id="btn-stats" (click)="goToStatsState()">Estadisticas</button>
+      </div>
+      <div id="btn-salir-div">
+        <button id="btn-salir" (click)="goToLoginState()">Salir</button>
+      </div>
     </div>
   </ion-toolbar>
 </ion-footer>

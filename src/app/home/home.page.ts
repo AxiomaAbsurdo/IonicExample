@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from './../login/login.service';
+import { ChartService } from './../charts/charts.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,9 @@ import { LoginService } from './../login/login.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  constructor( private LoginService: LoginService){ }
+  constructor( private loginService: LoginService, private chartService: ChartService ){ }
 
-  goToLoginState = this.LoginService.goToLoginState;
+  goToLoginState = this.loginService.goToLoginState;
+  
+  goToStatsState = this.chartService.goToStatsState;
 }

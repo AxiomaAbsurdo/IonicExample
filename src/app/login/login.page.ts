@@ -1,3 +1,5 @@
+import { LoginService } from './login.service';
+
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home/home.service';
 
@@ -8,11 +10,11 @@ import { HomeService } from '../home/home.service';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private homeService: HomeService) { }
+  constructor(private loginService: LoginService, private homeService: HomeService) { }
 
   goToHomeState = this.homeService.goToHomeState;
 
   ngOnInit() {
   }
-
+ 
 }

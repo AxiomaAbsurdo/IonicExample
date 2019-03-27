@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 @Injectable(
     { providedIn: 'root' }
 )
-export class HomeService {
+export class ChartService {
     constructor(private router: Router) {}
 
-    goToHomeState = () => {
-        this.router.navigate(['home']);
+    goToStatsState = () => {
+        this.router.navigate(['charts']);
     }
 }

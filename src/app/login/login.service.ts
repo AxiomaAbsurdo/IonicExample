@@ -5,9 +5,13 @@ import { Router } from '@angular/router';
     { providedIn: 'root' }
 )
 export class LoginService {
-    constructor(private router: Router) {}
+    constructor(private router: Router) { }
 
     goToLoginState = () => {
         this.router.navigate(['login']);
     }
+
+    // login = (credentials: { userName: string, userPass: string }) => {
+    //     console.log(credentials);
+    // }
 }
