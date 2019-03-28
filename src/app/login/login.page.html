@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Control de Gastos</ion-title>
+    <ion-label id="sub-title">- Un registro de gastos mas facil -</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>ACCEDER</ion-card-subtitle>
+      <ion-card-title></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Input with value -->
+      
+        <ion-input type="text" placeholder="Nombre..."></ion-input>
+        <br>
+        <ion-input type="password" placeholder="Contraseña..."></ion-input>
+      
+    </ion-card-content>
+    <ion-item>
+      <div id="btn-login-div">
+        <button id="btn-login" (click)="goToHomeState()">Entrar</button>
+      </div>
+    </ion-item>
+  </ion-card>
+</ion-content>
