@@ -20,9 +20,7 @@ export class LoginPage implements OnInit {
   goToHomeState = this.homeService.goToHomeState;
 
   ngOnInit() {
-    this.items = this.dbService.getItems();
+    // this.items = this.dbService.getItems();
   }
-
-  
 
 }
