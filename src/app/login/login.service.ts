@@ -10,8 +10,4 @@ export class LoginService {
     goToLoginState = () => {
         this.router.navigate(['login']);
     }
-
-    // login = (credentials: { userName: string, userPass: string }) => {
-    //     console.log(credentials);
-    // }
 }
