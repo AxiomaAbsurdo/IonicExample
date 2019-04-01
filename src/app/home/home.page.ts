@@ -4,6 +4,7 @@ import { ChartService } from './../charts/charts.service';
 import { DatabaseService } from '../database.service';
 import { FormBuilder, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,16 +12,30 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class HomePage implements OnInit {
   expenses: any;
+  total = 0;
+  available = 30000;
+  expensesSubscription: any;
   form = this.fb.group({
     details: ['', [Validators.required]],
-    cost: [undefined, [Validators.required, Validators.min(1)]]
+    cost: [undefined, [Validators.required, Validators.min(1), Validators.max(this.available)]]
   });
 
   constructor(private loginService: LoginService, private chartService: ChartService, private dbService: DatabaseService,
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.expenses = this.dbService.getusrExpensesObs(false);
+    this.expensesSubscription = this.dbService.getusrExpensesObs(false).subscribe((response: any) => {
+      this.expenses = response.items;
+      this.total = response.total;
+      this.form = this.fb.group({
+        details: ['', [Validators.required]],
+        cost: [undefined, [Validators.required, Validators.min(1), Validators.max(this.available - this.total)]]
+      });
+    });
+  }
+
+  getAvailable = () => {
+    return this.available - this.total;
   }
 
   /* BORRAR */
@@ -52,6 +67,13 @@ export class HomePage implements OnInit {
   /* NAVEGAR A LOS STATS */
   gotoStats() {
     this.chartService.goToStatsState();
+  }
+
+
+  /*Total Gastos */
+  getExpensesTotal() {
+    let total = this.dbService.totalExpenses();
+    console.log(total);
   }
 
 }
