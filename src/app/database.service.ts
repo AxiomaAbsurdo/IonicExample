@@ -37,14 +37,19 @@ export class DatabaseService {
 
   successCallback = (querySnapshot) => {
     const data = [];
+    let total = 0;
     querySnapshot.forEach(function (doc) {
       // doc.data() is never undefined for query doc snapshots
       const newItem = Object.assign(doc.data(), { _id: doc.id });
       data.push(newItem);
+      total += newItem.cost;
       console.log(doc.id, ' => ', doc.data());
     });
-    this.userExpensesData = data;
-    this.usrExpensesSuccess$.next(data);
+    this.userExpensesData = {
+      items: data,
+      total: total
+    };
+    this.usrExpensesSuccess$.next(this.userExpensesData);
   }
 
   getusrExpensesObs(forceRemote: boolean) {
@@ -52,19 +57,16 @@ export class DatabaseService {
       setTimeout(() => {
         this.usrExpensesSuccess$.next(this.userExpensesData);
       }, 0);
-
-      return this.usrExpensesSuccess$;
     } else {
       this.usrExpensesSubscription = this.db.collection('/expenses').get().subscribe(this.successCallback);
     }
-
     return this.usrExpensesSuccess$;
   }
 
   /* ADD RECORDS */
   addRecord(item) {
     this.db.collection('/expenses').add(item)
-      .then(() =>  {
+      .then(() => {
         console.log("Document successfully written!");
         this.getusrExpensesObs(true);
       })
@@ -84,4 +86,19 @@ export class DatabaseService {
         console.error("Error removing document: ", error);
       });
   }
+
+  totalExpenses() {
+    let exTotal = 0;
+    this.db.collection("/expenses").get().subscribe(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        exTotal = exTotal + doc.data().cost;
+        console.log(doc.data().cost);
+        console.log(exTotal);
+
+      });
+    });
+  }
+
 }
