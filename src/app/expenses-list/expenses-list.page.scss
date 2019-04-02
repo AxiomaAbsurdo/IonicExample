@@ -1,0 +1,26 @@
+.card-list{
+    width: 94%;
+    text-align: center;
+    // border-style: double;
+    height: 150px;
+}
+
+.card-list[scrollx=false], .card-list[scrolly=true] {
+    position: relative;
+    // overflow: hidden;
+    overflow: scroll;
+    overflow-x: hidden;
+  
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  .card-list[scrollx=true] {
+    overflow-x: auto;
+    overflow: hidden;
+  }
+  
+  .card-list[scrolly=true] {
+    overflow-y: auto;
+  }

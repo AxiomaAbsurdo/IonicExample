@@ -1,0 +1,25 @@
+  <div>
+    <ion-card id="inputs-card">
+      <form [formGroup]="form">
+        <ion-item>
+          <ion-input type="text" placeholder=" He gastado en..." formControlName="details"></ion-input>
+          <div *ngIf="details.touched && details.invalid">
+            <span *ngIf="details.errors.required">Es necesario</span>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" placeholder=" $..." formControlName="cost"></ion-input>
+          <div *ngIf="cost.touched && cost.invalid">
+            <span *ngIf="cost.errors.required">Es necesario</span>
+            <span *ngIf="cost.errors.min"> 0 es invalido</span>
+            <span *ngIf="cost.errors.max"> Fondo insuficiente</span>
+          </div>
+        </ion-item>
+      </form>
+    </ion-card>
+  </div>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger">
+      <ion-icon name="add" (click)="addRecord(form.value)"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
