@@ -13,23 +13,28 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
+import { DatabaseService } from './database.service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-            BrowserModule, 
-            ReactiveFormsModule, 
-            IonicModule.forRoot(), 
-            AppRoutingModule, 
-            AngularFireModule.initializeApp(environment.firebase),
-            AngularFirestoreModule
-          ],
+    BrowserModule,
+    ReactiveFormsModule,
+    IonicModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+  ],
   providers: [
+    DatabaseService,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

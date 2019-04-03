@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, docChanges } from 'angularfire2/firestore';
-import { Subject, Subscription } from 'rxjs';
+import { Subject, Subscription, Observable } from 'rxjs';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
-    constructor( public db: AngularFirestore) {
+  user: Observable<firebase.User>;
+
+  constructor(public db: AngularFirestore, private firebaseAuth: AngularFireAuth) {
+    this.user = firebaseAuth.authState;
   }
 
   /*BUSCA LA LISTA DE RECORDS */
@@ -37,4 +42,18 @@ export class DatabaseService {
       });
     });
   }
+
+  /*OBTENER CREDITO*/
+  getCredit(userId) {
+    return this.db.collection('/users').doc(userId).get();
+  }
+
+
+  /* LOGIN - AUTENTICAR USUARIO */
+  login(email: string, password: string) {
+    return this.firebaseAuth
+      .auth
+      .signInWithEmailAndPassword(email, password);
+  }
+
 }

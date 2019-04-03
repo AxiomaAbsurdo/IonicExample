@@ -35,6 +35,8 @@ export class ExpensesListService {
         this.success$.next(this.data);
       }, 0);
     } else {
+      if (this.data) { delete this.data; }
+      if (this.subscription) { this.subscription.unsubscribe(); }
       this.subscription = this.databaseService.listRecords().subscribe(this.successCallback);
     }
     return this.success$;

@@ -12,20 +12,10 @@ export class HomePage implements OnInit {
   expenses: any;
   total = 0;
   available = 30000;
-  
+
   constructor(private loginService: LoginService, private chartService: ChartService, private dbService: DatabaseService) { }
 
   ngOnInit() { }
-
-  /*Total Gastos */
-  getExpensesTotal() {
-    let total = this.dbService.totalExpenses();
-    console.log(total);
-  }
-
-  getAvailable = () => {
-    return this.available - this.total;
-  }
 
   /* NAVEGAR AL LOGIN */
   gotoLogin() {
