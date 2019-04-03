@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { AddExpensesComponent } from '../add-expenses/add-expenses.component';
+import { TotalizerComponent } from '../totalizer/totalizer.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,6 @@ import { AddExpensesComponent } from '../add-expenses/add-expenses.component';
       }
     ])
   ],
-  declarations: [HomePage, ExpensesListPage, AddExpensesComponent]
+  declarations: [HomePage, ExpensesListPage, AddExpensesComponent, TotalizerComponent]
 })
 export class HomePageModule {}

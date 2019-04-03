@@ -11,23 +11,22 @@
       <ion-card-subtitle>ACCEDER</ion-card-subtitle>
       <ion-card-title></ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
-      <!-- Input with value -->
-      <!-- <ul>
-        <li *ngFor="let item of items | async">
-            <pre>{{ item["userName"] }}</pre>
-        </li> 
-    </ul> -->
-  
-      <ion-input [(ngModel)]="userName" type="text" placeholder="Nombre..."></ion-input>
-      <br>
-      <ion-input [(ngModel)]="userPass" type="password" placeholder="Contraseña..."></ion-input>
-
+      <form [formGroup]="form">
+        <ion-input type="text" placeholder="Nombre..." formControlName="userName"></ion-input>
+        <div *ngIf="userName.touched && userName.invalid">
+          <span *ngIf="userName.errors.required">Es necesario</span>
+        </div>
+        <br>
+        <ion-input type="password" placeholder="Contraseña..." formControlName="userPass"></ion-input>
+        <div *ngIf="userPass.touched && userPass.invalid">
+          <span *ngIf="userPass.errors.required">Es necesario</span>
+        </div>
+      </form>
     </ion-card-content>
     <ion-item>
       <div id="btn-login-div">
-        <button id="btn-login" (click)="goToHomeState()">Entrar</button>
+        <button id="btn-login" (click)="userLogin()">Entrar</button>
       </div>
     </ion-item>
   </ion-card>
