@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from './../login/login.service';
 import { ChartService } from './../charts/charts.service';
 import { DatabaseService } from '../database.service';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,14 @@ export class HomePage implements OnInit {
   total = 0;
   available = 30000;
 
-  constructor(private loginService: LoginService, private chartService: ChartService, private dbService: DatabaseService) { }
+  constructor(private loginService: LoginService, private chartService: ChartService, private dbService: DatabaseService,
+    private homeService: HomeService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    const currentUser =  this.homeService.currentUser();
+    console.log(currentUser);
+   }
 
   /* NAVEGAR AL LOGIN */
   gotoLogin() {
@@ -27,4 +33,7 @@ export class HomePage implements OnInit {
     this.chartService.goToStatsState();
   }
 
+  // currentUser() {
+  //    console.log(this.homeService.currentUser());
+  // }
 }
