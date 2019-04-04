@@ -37,7 +37,10 @@ export class AddExpensesComponent implements OnInit {
 
   /* ADD RECORDS */
   addRecord(newRecord) {
+    console.log('entro aca')
+    console.log(newRecord)
     if (!this.form.errors) {
+      console.log(newRecord)
       this.addExpenses.add(newRecord)
         .then(() => {
           console.log('Document successfully written!');
