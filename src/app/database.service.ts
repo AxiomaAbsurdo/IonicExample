@@ -9,9 +9,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class DatabaseService {
   user: Observable<firebase.User>;
+  userMetadata: string;
 
   constructor(public db: AngularFirestore, private firebaseAuth: AngularFireAuth) {
     this.user = firebaseAuth.authState;
+    
   }
 
   /*BUSCA LA LISTA DE RECORDS */
@@ -54,6 +56,10 @@ export class DatabaseService {
     return this.firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password);
+  }
+
+  currentUser() {
+      return this.userMetadata = this.firebaseAuth.auth.currentUser.uid;
   }
 
 }

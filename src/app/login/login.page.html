@@ -13,20 +13,27 @@
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="form">
-        <ion-input type="text" placeholder="Nombre..." formControlName="userName"></ion-input>
-        <div *ngIf="userName.touched && userName.invalid">
-          <span *ngIf="userName.errors.required">Es necesario</span>
+        <ion-input type="text" placeholder="Nombre..." formControlName="email"></ion-input>
+        <div *ngIf="email.touched && email.invalid">
+          <span *ngIf="email.errors.required">Es necesario</span>
+          <span *ngIf="email.errors.email">Debe ser un correo</span>
         </div>
         <br>
-        <ion-input type="password" placeholder="Contraseña..." formControlName="userPass"></ion-input>
-        <div *ngIf="userPass.touched && userPass.invalid">
-          <span *ngIf="userPass.errors.required">Es necesario</span>
+        <ion-input type="password" placeholder="Contraseña..." formControlName="password"></ion-input>
+        <div *ngIf="password.touched && password.invalid">
+          <span *ngIf="password.errors.required">Es necesario</span>
         </div>
       </form>
     </ion-card-content>
     <ion-item>
+      <!-- <div *ngIf="error">
+          <span *ngIf="error.code === 'auth/user-not-found'"> Error: El correo no esta registrado.</span>
+          <span *ngIf="error.code === 'auth/wrong-password'"> Error: La clave es erronea.</span>
+      </div> -->
+      
       <div id="btn-login-div">
-        <button id="btn-login" (click)="userLogin()">Entrar</button>
+          <!-- <button ion-button id="btn-login" (click)="userLogin()" [disabled]="form.invalid">Entrar</button> -->
+          <ion-button (click)="userLogin()" [disabled]="form.invalid" color="danger">Entrar</ion-button>
       </div>
     </ion-item>
   </ion-card>
