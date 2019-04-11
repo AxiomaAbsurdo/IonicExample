@@ -24,14 +24,12 @@ export class LoginPage implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LoginService, private homeService: HomeService,
     private dbService: DatabaseService, public toastController: ToastController) { }
 
-  // goToHomeState = this.homeService.goToHomeState;
-
   ngOnInit() {
     this.form = this.fb.group({
       email: ['', [Validators.required,Validators.email]],
       password: [undefined, [Validators.required, Validators.min(1)]]
     });
-    // this.items = this.dbService.getItems();
+
   }
 
   /* OBTENER INPUTS DEL LOGIN*/
@@ -59,13 +57,4 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  // async presentToastWithOptions() {
-  //   const toast = await this.toastController.create({
-  //     message: 'Click to Close',
-  //     showCloseButton: true,
-  //     position: 'top',
-  //     closeButtonText: 'Done'
-  //   });
-  //   toast.present();
-  // }
 }
