@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DatabaseService } from '../database.service';
 import { Subscription, Subject } from 'rxjs';
+import { QuerySnapshot } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,19 @@ export class CreditService {
   subscription: Subscription;
   success$: Subject<any> = new Subject<any>();
 
-  constructor(private databaseService: DatabaseService) {  }
+  constructor(private databaseService: DatabaseService) { }
 
-  successCallback = (user: any) => {
-// tslint:disable-next-line: radix
-    this.data = parseInt(user.data().credit);
+  successCallback = (querySnapshot: QuerySnapshot<any>) => {
+    let credit: number;
+    querySnapshot.forEach(function (doc) {
+      credit = doc.data().credit;
+    });
+    this.data = credit;
     this.success$.next(this.data);
   }
 
-  getCredit(userId: string , forceRemote: boolean) {
-    userId = 'dh0O30O662416pUW8hX5';
+  getCredit(userId: string, forceRemote: boolean) {
+    userId = this.databaseService.currentUser;
     if (this.data && userId === this.userId && !forceRemote) {
       setTimeout(() => {
         this.success$.next(this.data);
@@ -28,7 +32,9 @@ export class CreditService {
     } else {
       this.userId = userId;
       if (this.subscription) { this.subscription.unsubscribe(); }
-      this.subscription = this.databaseService.getCredit(this.userId).subscribe(this.successCallback);
+      this.databaseService.getCredit(this.userId).then((data) => {
+        this.successCallback(data);
+      });
     }
     return this.success$;
   }

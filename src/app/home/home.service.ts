@@ -13,7 +13,7 @@ export class HomeService {
         this.router.navigate(['home']);
     }
 
-    currentUser(){
-        return this.dbService.currentUser();
+    currentUser() {
+        return this.dbService.currentUser;
     }
 }

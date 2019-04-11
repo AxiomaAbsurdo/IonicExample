@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, docChanges } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, docChanges, Query } from 'angularfire2/firestore';
 import { Subject, Subscription, Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -13,12 +13,16 @@ export class DatabaseService {
 
   constructor(public db: AngularFirestore, private firebaseAuth: AngularFireAuth) {
     this.user = firebaseAuth.authState;
-    
   }
 
   /*BUSCA LA LISTA DE RECORDS */
   listRecords() {
     return this.db.collection('/expenses').get();
+  }
+
+  listRecordsByUser() {
+    const currentLogedUser = this.currentUser;
+    return this.db.collection('/expenses').ref.where('addedBy', '==', currentLogedUser).get();
   }
 
   /* ADD RECORDS */
@@ -36,18 +40,17 @@ export class DatabaseService {
     let exTotal = 0;
     this.db.collection('/expenses').get().subscribe(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, ' => ', doc.data());
+        // console.log(doc.id, ' => ', doc.data());
         exTotal = exTotal + doc.data().cost;
-        console.log(doc.data().cost);
-        console.log(exTotal);
+        // console.log(doc.data().cost);
+        // console.log(exTotal);
       });
     });
   }
 
   /*OBTENER CREDITO*/
   getCredit(userId) {
-    return this.db.collection('/users').doc(userId).get();
+    return this.db.collection('/users').ref.where('uid', '==', userId).get()
   }
 
 
@@ -58,8 +61,8 @@ export class DatabaseService {
       .signInWithEmailAndPassword(email, password);
   }
 
-  currentUser() {
-      return this.userMetadata = this.firebaseAuth.auth.currentUser.uid;
+  get currentUser() {
+    return this.firebaseAuth.auth.currentUser.uid;
   }
 
 }

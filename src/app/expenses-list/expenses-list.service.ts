@@ -10,17 +10,15 @@ export class ExpensesListService {
   subscription: Subscription;
   success$: Subject<any> = new Subject<any>();
 
-  constructor(private databaseService: DatabaseService) {  }
+  constructor(private databaseService: DatabaseService) { }
 
   successCallback = (querySnapshot) => {
     const data = [];
     let total = 0;
     querySnapshot.forEach(function (doc) {
-      // doc.data() is never undefined for query doc snapshots
       const newItem = Object.assign(doc.data(), { _id: doc.id });
       data.push(newItem);
       total += newItem.cost;
-      console.log(doc.id, ' => ', doc.data());
     });
     this.data = {
       items: data,
@@ -42,8 +40,27 @@ export class ExpensesListService {
     return this.success$;
   }
 
-  deleteRecord(selectedRecord){
+  deleteRecord(selectedRecord) {
     return this.databaseService.deleteRecord(selectedRecord);
+  }
+
+  userRecords(): any {
+    return this.databaseService.listRecordsByUser().then(function (results) {
+      if (results.empty) {
+        console.log('No documents found!');
+        return {};
+      } else {
+        const records = [];
+        let total = 0;
+        results.forEach(function (doc) {
+          total += doc.data().cost;
+          records.push(doc.data());
+        });
+        return { records, total };
+      }
+    }).catch(function (error) {
+      console.log('Error getting documents:', error);
+    });
   }
 }
 
